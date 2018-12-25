@@ -48,23 +48,39 @@ else
 
         $(document).ready(function () {
 
-            $('#movies').DataTable();
+            $('#movies').DataTable({
+                "tabIndex": 1
+            });
 
             $("#movies").on("click", ".js-delete",
                 function() {
                     var button = $(this);
 
-                    bootbox.confirm("Are you sure want to delete this movie?", function(result) {
-                        if (result) {
-                            $.ajax({
-                                url: "/api/movies/" + button.attr("data-movie-id"),
-                                method: "DELETE",
-                                success: function () {
-                                    button.parents("tr").remove();
-                                }
-                            });
+                    bootbox.confirm({
+                        message: "Are you sure want to delete this movie?",
+                        buttons: {
+                            confirm: {
+                                label: 'Please Delete',
+                                className: 'btn-success'
+                            },
+                            cancel: {
+                                label: 'No Its wrong Attempt',
+                                className: 'btn-danger'
+                            }
+                        },
+                        callback: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/customers/" + button.attr("data-customer-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
                         }
                     });
+                    
                 });
         });
 
