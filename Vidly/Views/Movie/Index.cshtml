@@ -1,0 +1,41 @@
+﻿@*@model Vidly.ViewModels.MovieViewModel*@
+@model IEnumerable<Vidly.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Movies</h1>
+<hr/>
+
+@using (Html.BeginForm("New","Movie"))
+{
+    <button type="submit" class="btn btn-primary">New Movie</button>
+}
+
+<br/>
+
+@if (!Model.Any())
+{
+    <P>There is no Movies</P>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead><tr>
+            <th>Movies Name</th>
+            <th>Movies Genre</th>
+        </tr></thead>
+        @foreach (var movies in Model)
+        {
+            <tbody>
+            <tr>
+                <td>@Html.ActionLink(movies.Name,"Edit","Movie", new {id = movies.Id}, null)</td>
+                <td>@movies.Genre.Name</td>
+            </tr>
+            </tbody>
+        }
+    </table>
+}
+
