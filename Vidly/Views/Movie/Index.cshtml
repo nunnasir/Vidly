@@ -22,20 +22,52 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="movies" class="table table-bordered table-hover">
         <thead><tr>
             <th>Movies Name</th>
             <th>Movies Genre</th>
+            <th>Action</th>
         </tr></thead>
-        @foreach (var movies in Model)
-        {
-            <tbody>
-            <tr>
-                <td>@Html.ActionLink(movies.Name,"Details","Movie", new {id = movies.Id}, null)</td>
-                <td>@movies.Genre.Name</td>
-            </tr>
-            </tbody>
-        }
+        <tbody>
+            @foreach (var movies in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(movies.Name,"Details","Movie", new {id = movies.Id}, null)</td>
+                    <td>@movies.Genre.Name</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Movie", new { id = movies.Id }, new {@class = "btn btn-info"}) <button data-movie-id="@movies.Id" class="btn btn-danger js-delete">Delete</button></td>
+                </tr>
+            }
+        </tbody>
     </table>
+}
+
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+
+            $('#movies').DataTable();
+
+            $("#movies").on("click", ".js-delete",
+                function() {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure want to delete this movie?", function(result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/movies/" + button.attr("data-movie-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    button.parents("tr").remove();
+                                }
+                            });
+                        }
+                    });
+                });
+        });
+
+    </script>
 }
 
