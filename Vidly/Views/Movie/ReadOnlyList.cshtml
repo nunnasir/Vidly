@@ -1,0 +1,54 @@
+﻿@*@model Vidly.ViewModels.MovieViewModel*@
+@model IEnumerable<Vidly.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Movies</h1>
+<hr/>
+
+<table id="movies" class="table table-bordered table-hover table-responsive">
+    <thead><tr>
+        <th>Movies Name</th>
+        <th>Movies Genre</th>
+        <th>Action</th>
+    </tr></thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+
+            var table = $('#movies').DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<span><a href = '/movie/Details/" + data + "'class='btn btn-info'>Details</a></span>";
+                        }
+                    }
+                ]
+            });
+        });
+
+    </script>
+}
+
