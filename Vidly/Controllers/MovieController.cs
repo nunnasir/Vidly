@@ -63,8 +63,8 @@ namespace Vidly.Controllers
                 movieInDb.Name = movie.Name;
                 movieInDb.GenreId = movie.GenreId;
                 movieInDb.ReleaseDate = movieInDb.ReleaseDate;
-                movieInDb.NumberInStock = movieInDb.NumberInStock;
-                movieInDb.NumberAvailable = movieInDb.NumberInStock;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.NumberAvailable = movie.NumberInStock;
             }
 
             _context.SaveChanges();
