@@ -6,11 +6,12 @@
 }
 
 <h1>@Model.Name</h1>
+<hr />
 
 <ul>
     <li>Genre: @Model.Genre.Name</li>
     <li>Release Date: @Model.ReleaseDate.ToShortDateString()</li>
     <li>Date Added: @Model.AddedDate.ToShortDateString()</li>
-    <li>Number in Stock: @Model.NumberAvailable</li>
+    <li>Number in Available: @Model.NumberAvailable</li>
 </ul>
 

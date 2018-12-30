@@ -5,6 +5,7 @@
 }
 
 <h2>@Model.Title</h2>
+<hr/>
 
 @Html.ValidationSummary(true, "Please Fix the following Error!")
 
@@ -12,7 +13,7 @@
 {
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Name)
-        @Html.TextBoxFor(c => c.Customer.Name, new {@class="form-control"})
+        @Html.TextBoxFor(c => c.Customer.Name, new {@class="form-control", placeholder = "Your Name"})
         @Html.ValidationMessageFor(c => c.Customer.Name)
     </div>
 
@@ -24,7 +25,7 @@
 
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.DateOfBirth)
-        @Html.TextBoxFor(c => c.Customer.DateOfBirth, "{0:d MMM yyy}", new {@class="form-control", placeholder=""})
+        @Html.TextBoxFor(c => c.Customer.DateOfBirth, "{0:d MMM yyy}", new {@class="form-control", placeholder="1 Jan 2000"})
         @Html.ValidationMessageFor(c => c.Customer.DateOfBirth)
     </div>
 
