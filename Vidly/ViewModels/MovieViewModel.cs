@@ -28,6 +28,7 @@ namespace Vidly.ViewModels
         [Range(1, 20)]
         [Required]
         public byte? NumberInStock { get; set; }
+        public byte[] MovieImage { get; set; }
 
         public IEnumerable<Genre> Genres { get; set; }
 

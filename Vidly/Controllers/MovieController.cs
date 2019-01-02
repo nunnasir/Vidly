@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,8 +40,15 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Movie movie)
+        //public ActionResult Save(Movie movie, HttpPostedFileBase movieImage)
+        public ActionResult Save(Movie movie, HttpPostedFileBase Image)
         {
+            if (Image != null)
+            {
+                movie.MovieImage = new byte[Image.ContentLength];
+                Image.InputStream.Read(movie.MovieImage, 0, Image.ContentLength);
+            }
+
             if (!ModelState.IsValid)
             {
                 var viewModel = new MovieViewModel(movie)
@@ -65,6 +73,7 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = movieInDb.ReleaseDate;
                 movieInDb.NumberInStock = movie.NumberInStock;
                 movieInDb.NumberAvailable = movie.NumberInStock;
+                movieInDb.MovieImage = movie.MovieImage;
             }
 
             _context.SaveChanges();

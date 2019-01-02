@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201812290718426_AddNumberAvailablePropertyOnMovies.Designer.cs">
       <DependentUpon>201812290718426_AddNumberAvailablePropertyOnMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901021710194_addMovieImageProperty.cs" />
+    <Compile Include="Migrations\201901021710194_addMovieImageProperty.Designer.cs">
+      <DependentUpon>201901021710194_addMovieImageProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -587,6 +591,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812290718426_AddNumberAvailablePropertyOnMovies.resx">
       <DependentUpon>201812290718426_AddNumberAvailablePropertyOnMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901021710194_addMovieImageProperty.resx">
+      <DependentUpon>201901021710194_addMovieImageProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

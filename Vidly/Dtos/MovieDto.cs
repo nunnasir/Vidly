@@ -26,5 +26,6 @@ namespace Vidly.Dtos
         [Range(1, 20, ErrorMessage = "Number is stock should be between 1 to 20")]
         public byte NumberInStock { get; set; }
         public byte NumberAvailable { get; set; }
+        public byte[] MovieImage { get; set; }
     }
 }
