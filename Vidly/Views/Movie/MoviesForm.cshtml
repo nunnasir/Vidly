@@ -4,6 +4,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@{
+    var imgSrc = "";
+
+    if (Model.MovieImage != null)
+    {
+        var base64 = Convert.ToBase64String(Model.MovieImage);
+        imgSrc = String.Format("data:image/gif; base64, {0}", base64);
+    }
+    else
+    {
+        imgSrc = "";
+    }
+
+}
+
 <h2>@Model.Title</h2>
 <hr/>
 @Html.ValidationSummary(true, "Please fix this following error.")
@@ -29,10 +45,21 @@
     </div>
 
     <div class="form-group">
-        <label for="movieImage">Movie Image</label>
-        <input type="file" name="Image" id="movieImage" onchange="previewFile()" />
-        <img src="@Model.MovieImage" alt="Image preview..." class="img-responsive img-thumbnail" width="150" />
-    </div>
+        
+            <label for="movieImage">Movie Image</label>
+            <input type="file" name="Image" id="movieImage" onchange="previewFile()" />
+
+            @{
+                if (Model.Id != 0)
+                {
+                    <img src="@imgSrc" alt="Image preview..." class="img-responsive img-thumbnail" width="150" />
+                }
+                else
+                {
+                    <img src="@Model.MovieImage" alt="Image preview..." class="img-responsive img-thumbnail" width="150" />
+                }
+            }
+        </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.NumberInStock)

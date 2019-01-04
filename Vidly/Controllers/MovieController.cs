@@ -68,12 +68,16 @@ namespace Vidly.Controllers
             {
                 var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
                 //TryUpdateModel(movieInDb);
+                if (movie.MovieImage != null)
+                {
+                    movieInDb.MovieImage = movie.MovieImage;
+                }
+
                 movieInDb.Name = movie.Name;
                 movieInDb.GenreId = movie.GenreId;
-                movieInDb.ReleaseDate = movieInDb.ReleaseDate;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.NumberInStock = movie.NumberInStock;
                 movieInDb.NumberAvailable = movie.NumberInStock;
-                movieInDb.MovieImage = movie.MovieImage;
             }
 
             _context.SaveChanges();

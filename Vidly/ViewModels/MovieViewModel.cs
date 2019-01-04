@@ -32,6 +32,7 @@ namespace Vidly.ViewModels
 
         public IEnumerable<Genre> Genres { get; set; }
 
+
         public string Title
         {
             get
@@ -60,6 +61,7 @@ namespace Vidly.ViewModels
             GenreId = movie.GenreId;
             NumberInStock = movie.NumberInStock;
             ReleaseDate = movie.ReleaseDate;
+            MovieImage = movie.MovieImage;
         }
 
     }
